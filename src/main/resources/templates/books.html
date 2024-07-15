@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            margin: 20px;
+        }
+        .btn-edit {
+            background-color: yellow;
+        }
+        .btn-delete {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>List of Books</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}">1</td>
+            <td th:text="${book.title}">Book Title</td>
+            <td th:text="${book.author}">Author</td>
+            <td th:text="${book.publisher}">Publisher</td>
+            <td th:text="${book.description}">Description</td>
+            <td>
+                <a th:href="@{'/book/' + ${book.id}}" class="btn btn-sm btn-info">Details</a>
+                <!-- Add edit and delete buttons -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/addBook" class="btn btn-primary">Add New Book</a>
+</div>
+
+</body>
+</html>

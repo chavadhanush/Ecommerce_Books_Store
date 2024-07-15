@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Discussion List</title>
+</head>
+<body>
+<h1>Discussions</h1>
+<a href="/discussions/new">Start a New Discussion</a>
+<div th:each="discussion : ${discussions}">
+    <h2><a th:href="@{/discussions/{id}(id=${discussion.id})}" th:text="${discussion.title}">Discussion Title</a></h2>
+    <p th:text="${discussion.content}">Discussion Content</p>
+    <p><em th:text="${discussion.user.username}">Username</em> | <em th:text="${#temporals.format(discussion.creationDate, 'yyyy-MM-dd HH:mm')}">Date</em></p>
+</div>
+</body>
+</html>

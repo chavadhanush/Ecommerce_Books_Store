@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Discussion Details</title>
+</head>
+<body>
+<h1 th:text="${discussion.title}">Discussion Title</h1>
+<p th:text="${discussion.content}">Discussion Content</p>
+<p><em th:text="${discussion.user.username}">Username</em> | <em th:text="${#temporals.format(discussion.creationDate, 'yyyy-MM-dd HH:mm')}">Date</em></p>
+
+<h2>Comments</h2>
+<div th:each="comment : ${discussion.comments}">
+    <p th:text="${comment.content}">Comment Content</p>
+    <p><em th:text="${comment.user.username}">Username</em> | <em th:text="${#temporals.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}">Date</em></p>
+</div>
+
+<h2>Leave a Comment</h2>
+<form th:action="@{/discussions/{id}/comment(id=${discussion.id})}" th:object="${comment}" method="post">
+    <label for="content">Content:</label>
+    <textarea id="content" th:field="*{content}" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

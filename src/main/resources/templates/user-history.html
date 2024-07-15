@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User History</title>
+</head>
+<body>
+<h1>Your Transaction History</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Book Title</th>
+        <th>Transaction Type</th>
+        <th>Transaction Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.book.title}"></td>
+        <td th:text="${transaction.transactionType}"></td>
+        <td th:text="${transaction.transactionDate}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/books">Back to Book List</a>
+</body>
+</html>
